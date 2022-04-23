@@ -28,7 +28,6 @@ int main(){
 				no = NULL;
 			}
             arquivo = fopen(Leitura, "r");
-			printf("foi1\n\n");
             if(arquivo == NULL) {
                 printf("ABP não gerado, aquivo nulo.\n\n");
                 break;
