@@ -11,11 +11,11 @@ No* novoNo(int x){
         novo->FatBal = 0;
     }
     else
-        printf("\nNão foi possivel alocar um novo No!\n");
+        printf("\nNão foi possivel alocar um novo no!\n");
     return novo;
 }
 
-//  Retorna a altura de um nó ou -1 caso ele seja nulo
+//Retorna a altura de um nó ou -1 caso ele seja nulo
 int altura(No *no){
     if(no == NULL){
         return -1;
@@ -30,7 +30,7 @@ int altura(No *no){
     }
 }
 
-//   Calcula e retorna o fator de balanceamento de um nó
+//Calcula e salva o fator de balanceamento de um nó
 void fatorDeBalanceamento(No *no){	
     
     int esq = altura(no->pEsq);
@@ -45,7 +45,7 @@ void fatorDeBalanceamento(No *no){
     
 }
 
-//passa por cada no para ser impressa
+//passa por cada nó para ser impresso em ordem
 void imprimir(No *no, int nivel){
     int i;
     if(no){
@@ -56,7 +56,7 @@ void imprimir(No *no, int nivel){
     }
 }
 
-//passa por cada nó para ser desalocado
+//passa por cada nó para salvar o FB
 void salvaFator(No *no){
     if(no){
         salvaFator(no->pDir);
