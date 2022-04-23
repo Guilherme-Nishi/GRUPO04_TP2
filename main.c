@@ -6,6 +6,7 @@
 int main(){
 
     int opcao, valor;
+    char Leitura[100];
     No *no = NULL;
     FILE *arquivo = NULL;
 
@@ -22,17 +23,24 @@ int main(){
         	printf("Digite o nome do arquivo a ser lido: obs:Siga o modelo:");
             printf("Siga o exemplo ./files/arquivo.csv\n\n");
             scanf("%s", Leitura); 
-
-            arquivo = openFile(Leitura);
-
+			if (no != NULL){
+				desaloca(no);
+				no = NULL;
+			}
+            arquivo = fopen(Leitura, "r");
+			printf("foi1\n\n");
             if(arquivo == NULL) {
                 printf("ABP não gerado, aquivo nulo.\n\n");
                 break;
-            }
-            //raiz = inserir(raiz, valor);
+            }            
+			while(fscanf(arquivo,"%d, ", &valor) != EOF){
+            	no = criaArvore(no, valor);
+			}
+			fclose(arquivo);
+			
+            printf("ABP gerado.\n\n");
             break;
         case 2:
-            printf("\tDigite o valor a ser removido: ");
             if(no){
             	salvaFator(no);
             	printf("Fator de balanceamento gerado e salvo.\n\n");
@@ -46,7 +54,7 @@ int main(){
             break;
         case 4:
             desaloca(no);
-            printf("todos os nós foram desalocados!\n");
+            printf("todos os nos foram desalocados!\n");
             break;
         default:
             printf("Digite um numero valido!\n");

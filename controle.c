@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "controle.h"
 
 //aloca novo nó
@@ -17,14 +15,14 @@ No* novoNo(int x){
     return novo;
 }
 
-//  Retorna a altura de um nó ou -1 caso ele seja null
+//  Retorna a altura de um nó ou -1 caso ele seja nulo
 int altura(No *no){
     if(no == NULL){
         return -1;
     }
     else{
-        int esq = altura(no->pEsq);
-        int dir = altura(no->pDir);
+        int esq = altura( no->pEsq );
+        int dir = altura( no->pDir );
         if(esq > dir)
             return esq + 1;
         else
@@ -51,14 +49,10 @@ void fatorDeBalanceamento(No *no){
 void imprimir(No *no, int nivel){
     int i;
     if(no){
-        imprimir(no->pDir, nivel + 1);
-        printf("\n\n");
-
-        for(i = 0; i < nivel; i++)
-            printf("\t");
-
-        printf("Chave: %d FB: %d", no->Chave, no->FatBal);
         imprimir(no->pEsq, nivel + 1);
+        printf("\n\n");
+        printf("Chave: %d FB: %d", no->Chave, no->FatBal);
+        imprimir(no->pDir, nivel + 1);
     }
 }
 
@@ -76,8 +70,23 @@ void desaloca(No *no){
     if(no){
         desaloca(no->pDir);
         desaloca(no->pEsq);
-        free(raiz);
+        free(no);
     }
+}
+
+//função cria a arvore e retorna
+No* criaArvore(No *no, int x){
+    if(no == NULL) 
+        return novoNo(x);
+    else{ 
+        if(x < no->Chave)
+            no->pEsq = criaArvore(no->pEsq, x);
+        else if(x > no->Chave)
+            no->pDir = criaArvore(no->pDir, x);
+        else
+            printf("\nElemento %d ingnorado pois já existe.\n", x);
+    }
+    return no;
 }
 
 
