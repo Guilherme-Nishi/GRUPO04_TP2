@@ -18,7 +18,7 @@ No* novoNo(int x){
 //Retorna a altura de um nó ou -1 caso ele seja nulo
 int altura(No *no){
     if(no == NULL){
-        return -1;
+        return 0;
     }
     else{
         int esq = altura( no->pEsq );
@@ -32,17 +32,7 @@ int altura(No *no){
 
 //Calcula e salva o fator de balanceamento de um nó
 void fatorDeBalanceamento(No *no){	
-    
-    int esq = altura(no->pEsq);
-    int dir = altura(no->pDir);
-    if(dir == -1){
-    	dir = 0;
-	}
-	if(esq == -1){
-		esq = 0;
-	}
-    no->FatBal = (esq - dir);
-    
+    no->FatBal = (altura(no->pEsq) - altura(no->pDir));    
 }
 
 //passa por cada nó para ser impresso em ordem
